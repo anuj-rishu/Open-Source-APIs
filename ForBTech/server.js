@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/database");
 const courseRoutes = require("./routes/courseRoutes");
 const Course = require("./models/Course");
@@ -7,6 +8,7 @@ const seedCourses = require("./utils/seedData");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/courses/btech", courseRoutes);
