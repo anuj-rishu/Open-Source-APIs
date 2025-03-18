@@ -25,7 +25,7 @@ A comprehensive RESTful API providing information about museums across India. Ac
 
 A REST API that provides information about BTech courses offered at SRM University, including course details, departments, and program information.
 
-**Live API:** [SRM BTech Course API](https://srm-course-api.vercel.app/api/courses/btech)
+**Live API:** [SRM BTech Course API](hhttps://srm-course-api.vercel.app/)
 
 #### Features:
 
