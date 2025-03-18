@@ -1,28 +1,40 @@
-const express = require("express");
-const cors = require("cors");
-const connectDB = require("./config/db");
-const museumRoutes = require("./routes/museumRoutes");
-const seedDatabase = require("./seed/seedDb");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
 
+const museumRoutes = require('./routes/museumRoutes');
+const connectDB = require('./config/db');
+
+// Initialize Express app
 const app = express();
-app.use(express.json());
+
+// Apply middleware
 app.use(cors());
+app.use(express.json());
 
-const startServer = async () => {
-  try {
-    await connectDB();
-    console.log("MongoDB Connected Successfully");
+// Connect to MongoDB
+connectDB();
 
-    await seedDatabase();
+// Routes
+app.use('/api/museums', museumRoutes);
 
-    app.use("/museums", museumRoutes);
+// Health check route
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Museum API is running' });
+});
 
-    app.listen(9000, () => {
-      console.log("Server running on port 9000");
-    });
-  } catch (error) {
-    console.error("Error starting server:", error);
-  }
-};
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
+});
 
-startServer();
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// Export the Express API for Vercel
+module.exports = app;
