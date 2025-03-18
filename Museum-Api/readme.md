@@ -134,14 +134,6 @@ The museum data is compiled from various official sources including:
 - State Tourism Departments
 - Individual Museum Websites
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-If you have any questions or suggestions, please feel free to reach out to the project maintainers.
-
 ---
 
-Developed by [Anuj & Rishu](https://github.com/anuj-rishu).
+Developed by [Anuj Rishu](https://github.com/anuj-rishu).
