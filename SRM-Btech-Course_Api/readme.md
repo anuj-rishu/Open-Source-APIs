@@ -1,144 +1,101 @@
-# Course Management API
+# SRM BTech Course API
 
-## Overview
-This is a comprehensive Course Management API built with Node.js, Express, and MongoDB. The API allows you to manage and retrieve a wide range of SRM engineering courses across various disciplines.
+A REST API that provides information about BTech courses offered at SRM University. The API allows you to retrieve the list of all available BTech courses, search for specific courses, create new courses, and seed the database with predefined course data.
 
-## 🚀 Features
-- List all courses
-- Retrieve courses by name
-- Create new courses
-- Automatic database seeding
-- Modular project structure
-- Error handling
+## API Endpoints
 
-## 📋 Prerequisites
-- Node.js (v14 or later)
-- MongoDB
-- npm (Node Package Manager)
+**Base URL:** `https://srm-course-api.vercel.app/api/courses/btech`
 
-## 🛠️ Installation
+| Method | Endpoint | Description                                   |
+| ------ | -------- | --------------------------------------------- |
+| GET    | `/`      | Get all BTech courses                         |
+| GET    | `/:name` | Get a specific course by name                 |
+| POST   | `/`      | Create a new course                           |
+| POST   | `/seed`  | Seed the database with predefined course data |
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/anuj-rishu/Api-for-the-SRM-Course
-cd Api-for-the-SRM-Course
+## Usage Examples
+
+### Get All Courses
+
+```sh
+curl -X GET https://srm-course-api.vercel.app/api/courses/btech/
 ```
 
-### 2. Install Dependencies
-```bash
+### Get a Specific Course
+
+```sh
+curl -X GET https://srm-course-api.vercel.app/api/courses/btech/Computer-Science
+```
+
+### Create a New Course
+
+```sh
+curl -X POST https://srm-course-api.vercel.app/api/courses/btech/ \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Artificial Intelligence", "department": "CSE"}'
+```
+
+### Seed the Database
+
+```sh
+curl -X POST https://srm-course-api.vercel.app/api/courses/btech/seed
+```
+
+## Available Courses
+
+The API includes a comprehensive list of BTech courses offered at SRM University, including:
+
+- Computer Science and Engineering specializations
+- Mechanical Engineering programs
+- Electronics and Communication Engineering
+- Electrical Engineering
+- Biotechnology
+- Civil Engineering
+- And many more specialized fields
+
+## Local Development
+
+### Prerequisites
+
+- Node.js
+- MongoDB
+
+### Installation
+
+1. Clone the repository
+
+```sh
+git clone https://github.com/anuj-rishu/Open-Source-APIs/tree/main/SRM-Btech-Course_Api
+cd SRM-Btech-Course_Api
+```
+
+2. Install dependencies
+
+```sh
 npm install
 ```
 
-### 3. Configure MongoDB
-- Ensure MongoDB is installed and running
-- Default connection: `mongodb://localhost:27017/course_db`
-- Modify `config/database.js` if you need custom connection settings
+3. Create a `.env` file with your MongoDB connection string
 
-## 🔧 Project Structure
-```
-course-api/
-│
-├── config/
-│   └── database.js       # MongoDB connection configuration
-│
-├── models/
-│   └── Course.js         # Mongoose schema for courses
-│
-├── controllers/
-│   └── courseController.js  # API logic and database interactions
-│
-├── routes/
-│   └── courseRoutes.js   # Express route definitions
-│
-├── utils/
-│   └── seedData.js       # Initial course data
-│
-├── server.js             # Main application entry point
-└── package.json
+```sh
+MONGO_URI=your_mongodb_connection_string
 ```
 
-## 🚀 Running the Application
-```bash
-# Start the server
+4. Start the server
+
+```sh
 npm start
 ```
 
-## 📡 API Endpoints
+By default, the server will run on port `3000`. If the database is empty, it will automatically seed it with predefined course data.
 
-### Get All Courses
-- **URL:** `/api/courses/btech`
-- **Method:** `GET`
-- **Success Response:** 
-  - Code: 200
-  - Content: Array of course objects
+## Deployment
 
-### Get Course by Name
-- **URL:** `/api/courses/btech:name`
-- **Method:** `GET`
-- **Success Response:**
-  - Code: 200
-  - Content: Single course object
+This API is deployed on Vercel. The `vercel.json` file contains the necessary configuration for deployment.
 
-### Create New Course
-- **URL:** `/api/courses/btech`
-- **Method:** `POST`
-- **Request Body:**
-  ```json
-  {
-    "name": "New Course Name"
-  }
-  ```
-- **Success Response:**
-  - Code: 201
-  - Content: Created course object
+## Technologies Used
 
-### Seed Database
-- **URL:** `/api/courses/btech/seed`
-- **Method:** `POST`
-- **Success Response:**
-  - Code: 201
-  - Content: Confirmation message with course count
-
-## 🧪 Example Requests
-### Fetch All Courses
-1. Open Postman.
-2. Create a new GET request.
-3. Enter the URL: `http://localhost:9000/api/courses/btech`.
-4. Click Send.
-
-### Create a Course
-1. Open Postman.
-2. Create a new POST request.
-3. Enter the URL: `http://localhost:9000/api/courses/btech`.
-4. Go to the Headers tab and add a new header with:
-   - Key: `Content-Type`
-   - Value: `application/json`
-5. Go to the Body tab, select `raw` and `JSON` format, and enter the following JSON:
-   ```json
-   {
-     "name": "Advanced Robotics"
-   }
-## 🛡️ Error Handling
-- 404: Course not found
-- 500: Server error
-- 400: Bad request
-
-## 📦 Dependencies
+- Node.js
 - Express.js
-- Mongoose
-- MongoDB
-
-## 🤝 Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 📞 Contact
-Your Name - anujtiwari4454@outlook.com
-
-Project Link: [https://github.com/anuj-rishu/Api-for-the-SRM-Course](https://github.com/yourusername/course-management-api)
+- MongoDB with Mongoose
+- Vercel (hosting)
