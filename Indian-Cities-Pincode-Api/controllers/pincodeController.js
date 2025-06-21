@@ -4,7 +4,7 @@ exports.getByPincode = async (req, res) => {
   const { pincode } = req.params;
   const data = await Pincode.findOne({ pincode }, { _id: 0, __v: 0 }).lean();
   if (!data) return res.status(404).json({ error: "Pincode not found" });
-  res.json(data);
+  res.json(data)
 };
 
 exports.getByState = async (req, res) => {
