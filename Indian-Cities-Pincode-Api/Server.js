@@ -7,6 +7,9 @@ const app = express();
 connectDB();
 
 app.use('/api', pincodeRoutes);
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Pinncode API is running' });
+});
 
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
