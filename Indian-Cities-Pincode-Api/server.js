@@ -36,8 +36,5 @@ if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
-<<<<<<< HEAD:Indian-Cities-Pincode-Api/Server.js
-=======
 
->>>>>>> 54aa60a21c96090477e75f288a13b4c927879b70:Indian-Cities-Pincode-Api/server.js
 module.exports = app;
