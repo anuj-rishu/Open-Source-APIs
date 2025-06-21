@@ -1,38 +1,47 @@
-const express = require("express");
-const connectDB = require("./config/db");
-const pincodeRoutes = require("./routes/pincodeRoutes");
-require("dotenv").config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv').config();
+
+const pincodeRoutes = require('./routes/pincodeRoutes');
+const connectDB = require('./config/db');
+
 
 const app = express();
 
-connectDB();
 
+app.use(cors());
 app.use(express.json());
 
-app.use("/api", pincodeRoutes);
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Indian Pincode API is running",
-    version: "1.0.0",
+connectDB();
+
+app.use('/api', pincodeRoutes);
+
+
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    message: 'Indian Pincode API is running',
+    version: '1.0.0',
     endpoints: {
-      pincode: "/api/pincode/:pincode",
-      state: "/api/state/:state",
-      district: "/api/district/:district",
-    },
+      pincode: '/api/pincode/:pincode',
+      state: '/api/state/:state',
+      district: '/api/district/:district'
+    }
   });
 });
 
-app.use("*", (req, res) => {
-  res.status(404).json({ error: "Route not found" });
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
 });
 
-const PORT = process.env.PORT || 9000;
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 9000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
+
 
 module.exports = app;
