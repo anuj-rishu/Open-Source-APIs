@@ -13,9 +13,6 @@ A comprehensive REST API providing detailed information about Indian cities, sta
 
 ## 📚 API Endpoints
 
-### Base URL
-```
-https://api.example.com/v1
 ```
 
 ### Get All States
